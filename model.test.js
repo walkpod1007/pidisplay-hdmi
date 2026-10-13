@@ -1,0 +1,6 @@
+const {test}=require('node:test'),assert=require('node:assert/strict');
+const {wifiQR,selectRoonTrack,applyZones,secureEqual}=require('./model');
+test('Wi-Fi QR escapes delimiter characters',()=>{assert.equal(wifiQR('A;B','a:b\\c'),'WIFI:T:WPA;S:A\\;B;P:a\\:b\\\\c;;');});
+test('Roon add/change/seek/remove and new subscription clear stale zones',()=>{const z={old:{}};applyZones(z,'Subscribed',{zones:[{zone_id:'a',state:'playing',now_playing:{seek_position:1}}]});assert.equal(z.old,undefined);applyZones(z,'Changed',{zones_seek_changed:[{zone_id:'a',seek_position:9}]});assert.equal(z.a.now_playing.seek_position,9);applyZones(z,'Changed',{zones_removed:['a']});assert.deepEqual(z,{});});
+test('PIN comparison rejects unequal values and lengths',()=>{assert(secureEqual('123456','123456'));assert(!secureEqual('12345','123456'));assert(!secureEqual(undefined,'123456'));});
+test('Roon respects selected zone and otherwise prefers a playing zone',()=>{const z={a:{state:'paused',now_playing:{three_line:{line1:'Paused'}}},b:{state:'playing',now_playing:{three_line:{line1:'Playing'}}}};assert.equal(selectRoonTrack(z,'').title,'Playing');assert.equal(selectRoonTrack(z,'a').title,'Paused');assert.equal(selectRoonTrack(z,'missing'),null);});

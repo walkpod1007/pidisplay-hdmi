@@ -1,0 +1,19 @@
+# 放到 /etc/X11/xorg.conf.d/10-pidisplay-monitor.conf（只有「畫面糊、解析度掉到 720×576」時才需要）
+#
+# 原因：有些 HDMI 驅動板的 EDID 首選模式（例如 2048×1536@60，像素時脈 223 MHz）
+# 超過 Zero 2 W 的 HDMI 上限（約 162 MHz），X 會把它丟掉、退到很低的解析度。
+# 解法：同一組解析度降更新率（30〜40 Hz）讓像素時脈落在上限以下，並設成首選。
+#
+# 怎麼算：先用 cvt 產生 modeline，再把 Hz 往下調到時脈 < 160 MHz：
+#   cvt 2048 1536 40
+# 把輸出的 Modeline 貼到下面 Modeline 那行，名稱跟 Option "PreferredMode" 對齊。
+# 畫面出現紫色色塊、綠色亮點或抖動＝像素時脈還是太貼近上限，再往下降 Hz，不是程式問題。
+#
+# Identifier 的輸出名用 `DISPLAY=:0 xrandr -q` 看（Zero 2 W 通常是 HDMI-1）。
+
+# 下面 Modeline 的 sync 起訖位置只是示意，實際以 cvt 輸出為準；像素時脈 148.68 MHz 與總像素 2272×1636 是實機跑過的值。
+Section "Monitor"
+    Identifier "HDMI-1"
+    Modeline "2048x1536_40"  148.68  2048 2080 2112 2272  1536 1539 1543 1636  +hsync +vsync
+    Option "PreferredMode" "2048x1536_40"
+EndSection

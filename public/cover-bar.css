@@ -1,0 +1,48 @@
+/* Portrait 3:4: square artwork above a quarter-height information bar.
+   Landscape 4:3: same vertical order, artwork contained without cropping. */
+.display{height:100vh;height:100dvh;background:#0d100f;overflow:hidden}
+.display .stage{display:grid;grid-template-rows:minmax(0,1fr) auto;align-items:stretch;gap:0;padding:0;width:100%;height:100%;flex:1}
+.display .art-stage{min-height:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at center,#283a30,#111813 75%);overflow:hidden}
+.display .cover{height:100%;width:auto;max-width:100%;aspect-ratio:1;flex-shrink:1;border-radius:0;box-shadow:none;background:linear-gradient(145deg,#395c49,#17251d)}
+.display .cover span{font-size:min(34vw,40vh);color:#c3dfb2}
+.display .cover img{object-fit:contain;background:#101513}
+.display .song{position:relative;flex:none;min-width:0;width:100%;height:25vh;height:25dvh;min-height:150px;padding:2.2vh 4vw 1.5vh;background:#111713;border-top:1px solid #ffffff0d;display:flex;flex-direction:column;justify-content:center}
+.display .track-text{min-height:0;overflow:hidden}
+.display .song h1{display:block;font-size:clamp(22px,4.5vmin,60px);font-weight:650;line-height:1.18;letter-spacing:-.025em;margin:0 0 .3em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.display #album{font-size:clamp(14px,2.6vmin,34px);color:#d3d8cf;line-height:1.35;margin:0 0 .18em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:0}
+.display .song h2{font-size:clamp(14px,2.6vmin,34px);color:#92a28f;line-height:1.35;font-weight:400;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.display .playback{display:flex;justify-content:space-between;gap:12px;margin-top:1.25vh;font-size:clamp(10px,1.5vmin,17px);color:#7f9383;line-height:1.2;letter-spacing:.06em}
+.display #time{font:inherit;color:inherit}
+.display .progress{position:absolute;bottom:0;left:0;right:0;height:3px;margin:0;border-radius:0;background:#263229}
+.display #bar{background:#bbdca7}
+.screen-settings{position:absolute;top:14px;right:14px;z-index:5}
+.screen-settings summary{list-style:none;width:max-content;margin-left:auto;cursor:pointer;border:1px solid #ffffff25;background:#111a14c9;color:#d6e0d4;border-radius:30px;padding:8px 15px;font-size:12px;letter-spacing:.06em}
+.screen-settings summary::-webkit-details-marker{display:none}
+.screen-settings[open]{max-width:calc(100vw - 28px)}
+.display footer{display:flex;flex-direction:column;align-items:flex-start;gap:16px;background:#17211bf5;border:1px solid #53634e;border-radius:14px;margin-top:10px;padding:22px;width:360px;max-width:calc(100vw - 28px);max-height:calc(100dvh - 80px);overflow:auto;box-shadow:0 12px 50px #0008;font-size:13px}
+.display .connection{width:100%;overflow-wrap:anywhere}
+.display #state,.display #zone{font-size:13px}
+.display .qr{gap:20px}
+.display .qr img{width:128px;height:128px;min-width:0;min-height:0}
+.display .qr small{font-size:11px}
+@media (max-height:480px){.display .song{height:32vh;min-height:125px;padding:10px 4vw}.display .song h1{font-size:20px}.display #album,.display .song h2{font-size:13px}.display .playback{margin-top:6px;font-size:10px}}
+/* Hands-free HDMI: always-visible phone entry, automatic first-use guidance. */
+.display,.display *{cursor:none}
+.display .song{padding-right:calc(4vw + 104px)}
+.screen-settings{top:auto;bottom:14px;right:3vw;max-width:none}
+.display .screen-settings footer{width:96px;max-width:none;max-height:none;padding:0;margin:0;gap:5px;border:0;background:none;box-shadow:none;overflow:visible;align-items:center}
+.display .screen-settings .connection{display:none}
+.display .screen-settings .qr{gap:12px}
+.display .screen-settings .qr img{height:88px;width:88px}
+.display .screen-settings .qr small{font-size:10px}
+.display #remote-pin{font-size:11px;line-height:1.3;margin:0;text-align:center;color:#bfd4b5;white-space:nowrap}
+.display[data-onboarding="true"] .screen-settings{top:3vh;bottom:auto;left:50%;right:auto;transform:translateX(-50%);width:min(90vw,540px)}
+.display[data-onboarding="true"] .screen-settings footer{width:100%;padding:24px;gap:16px;background:#142019f5;border:1px solid #52644e;border-radius:14px;align-items:center}
+.display[data-onboarding="true"] .screen-settings .connection{display:block;text-align:center}
+.display[data-onboarding="true"] .screen-settings .qr img{height:clamp(112px,20vmin,176px);width:clamp(112px,20vmin,176px)}
+.display[data-onboarding="true"] #remote-pin{font-size:18px}
+@media(max-height:480px){.display[data-onboarding="true"] .screen-settings{top:8px}.display[data-onboarding="true"] .screen-settings footer{padding:10px;gap:6px}.display[data-onboarding="true"] .connection #state,.display[data-onboarding="true"] .connection #zone{display:none}.display[data-onboarding="true"] .screen-settings .qr img{height:100px;width:100px}.display[data-onboarding="true"] .connection{font-size:11px}}
+
+.display .screen-settings .qr{flex-wrap:wrap;justify-content:center}
+.display #wifi{order:0}.display #manage{order:1}
+.display[data-onboarding="true"] #setup-description{font-size:14px;line-height:1.6;margin:10px 0}

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PiDisplay · Now Playing</title>
+<link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/cover-bar.css">
+<body class="display" data-onboarding="true">
+<main class="stage">
+  <div class="art-stage"><div id="cover" class="cover"><span aria-hidden="true">♫</span><img id="art" alt="專輯封面" hidden></div></div>
+  <section class="song" aria-label="歌曲資訊">
+    <div class="track-text"><h1 id="title">等候音樂播放</h1><p id="album">專輯名稱</p><h2 id="artist">Sonos · Roon</h2></div>
+    <div class="playback"><span id="source">NOW PLAYING</span><span id="time"></span></div>
+    <div class="progress"><div id="bar"></div></div>
+  </section>
+</main>
+<aside class="screen-settings" aria-label="手機掃碼設定">
+  <footer><div class="connection"><strong id="setup-title">1 / 連上 Wi-Fi</strong><p id="setup-description">手機掃碼開始設定</p><p id="state">等候播放器</p><p id="zone"></p><span id="hint">正在連線…</span><div id="pair"></div></div>
+    <div class="qr"><div id="wifi" hidden><img id="wifi-qr" alt="連上設定熱點 QR code"><small>① 連上設定熱點</small></div><div id="manage" hidden><img id="qr" alt="開啟設定頁 QR code"><small id="qr-label">開啟設定頁</small></div></div>
+    <p id="remote-pin">請用手機掃碼設定</p>
+  </footer>
+</aside>
+<script src="/display.js"></script><script src="/hands-free.js"></script></body></html>
